@@ -41,7 +41,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="utilities-other.html">Almacenes</a>
                 <a class="collapse-item" href="utilities-border.html">Departamentos</a>
-                <a class="collapse-item" href="utilities-color.html">Marcas</a>
+                <a class="collapse-item" href="{{ route('marcas.index') }}">Marcas</a>
                 <a class="collapse-item" href="utilities-animation.html">Productos</a>
             </div>
         </div>
