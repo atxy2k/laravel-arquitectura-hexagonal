@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlmacenesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
@@ -49,6 +50,15 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
         Route::get('change/{id}', [DepartamentosController::class, 'change'])->name('departamentos.change');
         Route::post('store-change/{id}', [DepartamentosController::class,'store_change'])->name('departamentos.store-change');
         Route::get('delete/{id}', [DepartamentosController::class, 'delete'])->name('departamentos.delete');
+    });
+
+    Route::prefix('almacenes')->group(function(){
+        Route::get('/',[AlmacenesController::class,'index'])->name('almacenes.index');
+        Route::get('add',[AlmacenesController::class,'add'])->name('almacenes.add');
+        Route::post('store',[AlmacenesController::class,'store'])->name('almacenes.store');
+        Route::get('change/{id}', [AlmacenesController::class, 'change'])->name('almacenes.change');
+        Route::post('store-change/{id}', [AlmacenesController::class,'store_change'])->name('almacenes.store-change');
+        Route::get('delete/{id}', [AlmacenesController::class, 'delete'])->name('almacenes.delete');
     });
 
 });
