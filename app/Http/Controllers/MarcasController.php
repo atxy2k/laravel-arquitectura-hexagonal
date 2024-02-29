@@ -7,6 +7,7 @@ use App\Http\Requests\AddMarcaRequest;
 use App\Http\Requests\ChangeMarcaRequest;
 use App\Repositories\MarcasRepository;
 use App\Services\MarcasService;
+use Prologue\Alerts\Facades\Alert;
 
 class MarcasController extends Controller
 {
@@ -21,10 +22,10 @@ class MarcasController extends Controller
 
     public function store(AddMarcaRequest $request, MarcasService $marcasService){
         if($marcasService->create($request->all())){
-            // mensaje exitoso
+            Alert::success('Marca registradad correctamente')->flash();
             return redirect()->route('marcas.index');
         }
-        //mensaje de error
+        Alert::error($marcasService->errors()->first())->flash();
         return redirect()->route('marcas.add')->withInput($request->all());
     }
 
@@ -32,7 +33,7 @@ class MarcasController extends Controller
         $marca = $marcasRepository->find($id);
         if(is_null($marca))
         {
-            // Lanzamos un error
+            Alert::error('Ocurrió un error al localizar la marca seleccionada')->flash();
             return redirect()->route('marcas.index');
         }
         return view('marcas.change', compact('marca'));
@@ -40,18 +41,18 @@ class MarcasController extends Controller
 
     public function store_change(int $id, ChangeMarcaRequest $request, MarcasService $marcasService){
         if(!$marcasService->change($id, $request->all())){
-            //lanzamos error
+            Alert::error($marcasService->errors()->first())->flash();
             return redirect()->route('marcas.change', $id);
         }
-        //lanzar un mensaje de exito
+        Alert::success('Marca actualizada')->flash();
         return redirect()->route('marcas.index');
     }
 
     public function delete(int $id, MarcasService $marcasService){
         if(!$marcasService->delete($id)){
-            //lanzamos un error
+            Alert::error($marcasService->errors()->first())->flash();
         }
-        // lanza un mensaje de exito
+        Alert::warning('Marca eliminada correctamente')->flash();
         return redirect()->route('marcas.index');
     }
 

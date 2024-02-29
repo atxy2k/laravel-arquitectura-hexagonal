@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Services\UsersService;
+use Prologue\Alerts\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -15,7 +16,7 @@ class LoginController extends Controller
             $loginRequest->session()->regenerate();
             return redirect()->route('dashboard.index');
         }
-        // lanzar el error
+        Alert::error($usersService->errors()->first())->flash();
         return redirect()->route('auth.login');
     }
 

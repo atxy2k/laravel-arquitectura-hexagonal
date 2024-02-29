@@ -28,6 +28,8 @@ class MarcasService extends BaseService {
             DB::beginTransaction();
             throw_unless($this->validator->with($data)->passes(MarcasValidator::CREATE), 
                 new Exception($this->validator->errors()->first()));
+            $existent = $this->marcasRepository->findBySlug(Str::slug($data['nombre']));
+            throw_if(!is_null($existent), NameIsNotAvailableException::class);
             $marca_data = Arr::only($data,['nombre']);
             $marca_data['slug'] = Str::slug($marca_data['nombre']);
             $marca_data['created_by_id'] = Auth::id();

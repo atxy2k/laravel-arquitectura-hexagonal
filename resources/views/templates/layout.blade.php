@@ -35,6 +35,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
+                    @include('templates.utils.alerts')
                     <!-- Page Heading -->
                     @yield('content')
 

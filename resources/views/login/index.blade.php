@@ -5,6 +5,8 @@
         <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Bienvenido</h1>
         </div>
+        
+        @include('templates.utils.alerts')
 
         <form class="user" action="{{ route('auth.login_attempt') }}" method="post">
             @csrf
