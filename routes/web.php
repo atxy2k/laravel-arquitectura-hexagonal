@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DepartamentosController;
 use App\Http\Controllers\MarcasController;
 
 /*
@@ -39,6 +40,15 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
         Route::get('change/{id}', [MarcasController::class, 'change'])->name('marcas.change');
         Route::post('change/{id}', [MarcasController::class, 'store_change'])->name('marcas.store_change');
         Route::get('delete/{id}', [MarcasController::class, 'delete'])->name('marcas.delete');
+    });
+
+    Route::prefix('departamentos')->group(function(){
+        Route::get('/',[DepartamentosController::class,'index'])->name('departamentos.index');
+        Route::get('add',[DepartamentosController::class,'add'])->name('departamentos.add');
+        Route::post('store',[DepartamentosController::class,'store'])->name('departamentos.store');
+        Route::get('change/{id}', [DepartamentosController::class, 'change'])->name('departamentos.change');
+        Route::post('store-change/{id}', [DepartamentosController::class,'store_change'])->name('departamentos.store-change');
+        Route::get('delete/{id}', [DepartamentosController::class, 'delete'])->name('departamentos.delete');
     });
 
 });
