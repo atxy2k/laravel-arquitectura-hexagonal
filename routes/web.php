@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartamentosController;
 use App\Http\Controllers\MarcasController;
+use App\Http\Controllers\RolesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +60,15 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
         Route::get('change/{id}', [AlmacenesController::class, 'change'])->name('almacenes.change');
         Route::post('store-change/{id}', [AlmacenesController::class,'store_change'])->name('almacenes.store-change');
         Route::get('delete/{id}', [AlmacenesController::class, 'delete'])->name('almacenes.delete');
+    });
+
+    Route::prefix('roles')->group(function(){
+        Route::get('/', [RolesController::class,'index'])->name('roles.index');
+        Route::get('add', [RolesController::class,'add'])->name('roles.add');
+        Route::post('store',[RolesController::class,'store'])->name('roles.store');
+        Route::get('change/{id}', [RolesController::class, 'change'])->name('roles.change');
+        Route::post('store-change/{id}', [RolesController::class,'store_change'])->name('roles.store-change');
+        Route::get('delete/{id}', [RolesController::class, 'delete'])->name('roles.delete');
     });
 
 });

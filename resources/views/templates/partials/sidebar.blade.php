@@ -66,7 +66,7 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="login.html">Usuarios</a>
-                <a class="collapse-item" href="register.html">Roles</a>
+                <a class="collapse-item" href="{{ route('roles.index') }}">Roles</a>
             </div>
         </div>
     </li>
