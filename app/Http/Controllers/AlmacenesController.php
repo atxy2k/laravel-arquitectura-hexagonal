@@ -15,15 +15,18 @@ use Illuminate\Support\Facades\Auth;
 class AlmacenesController extends Controller
 {
     public function index(){
+        $this->authorize('view any almacen');
         $almacenes = Almacen::paginate(5);
         return view('almacenes.index', compact('almacenes'));
     }
 
     public function add(){
+        $this->authorize('add almacen');
         return view('almacenes.add');
     }
 
     public function store(AddAlmacenRequest $request){
+        $this->authorize('add almacen');
         try
         {
             DB::beginTransaction();
@@ -48,6 +51,7 @@ class AlmacenesController extends Controller
     }
 
     public function change(int $id){
+        $this->authorize('change almacen');
         $almacen = Almacen::find($id);
         if(is_null($almacen)){
             Alert::error('Ocurrió un error al localizar el almacen seleccionado');
@@ -57,6 +61,7 @@ class AlmacenesController extends Controller
     }
 
     public function store_change(int $id, ChangeAlmacenRequest $request){
+        $this->authorize('change almacen');
         try
         {
             DB::beginTransaction();
@@ -82,6 +87,7 @@ class AlmacenesController extends Controller
     }
 
     public function delete(int $id){
+        $this->authorize('delete almacen');
         $almacen = Almacen::find($id);
         if(is_null($almacen)){
             Alert::error('Ocurrió un error al localizar el almacen seleccionado');

@@ -19,15 +19,18 @@ class DepartamentosController extends Controller
 {
     
     public function index(){
+        $this->authorize('view any departamento');
         $departamentos = Departamento::all();
         return view('departamentos.index', compact('departamentos'));
     }
 
     public function add(){
+        $this->authorize('add departamento');
         return view('departamentos.add');
     }
 
     public function store(AddDepartamentoRequest $request){
+        $this->authorize('add departamento');
         try
         {
             DB::beginTransaction();
@@ -52,6 +55,7 @@ class DepartamentosController extends Controller
     }
 
     public function change(int $id){
+        $this->authorize('change departamento');
         $departamento = Departamento::find($id);
         if(is_null($departamento)){
             Alert::error('Ocurrió un error al localizar el departamento seleccionado');
@@ -61,6 +65,7 @@ class DepartamentosController extends Controller
     }
 
     public function store_change(int $id, ChangeDepartamentoRequest $request){
+        $this->authorize('change departamento');
         try
         {
             $departamento = Departamento::find($id);
@@ -87,6 +92,7 @@ class DepartamentosController extends Controller
     }
 
     public function delete(int $id){
+        $this->authorize('delete departamento');
         $departamento = Departamento::find($id);
         if(is_null($departamento)){
             Alert::error('Ocurrió un error al localizar el departamento seleccionado');

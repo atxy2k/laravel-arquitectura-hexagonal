@@ -44,6 +44,12 @@ class CreateDefaultPermissionsSeeder extends Seeder
             'add role',
             'change role',
             'delete role',
+            // Productos
+            'view any role',
+            'view single product',
+            'add product',
+            'change product',
+            'delete product',
         ];
         foreach($permissions as $permission){
             if(!Permission::where('name', $permission)->exists()){

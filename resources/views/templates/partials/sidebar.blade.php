@@ -50,27 +50,31 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Administración
-    </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false"
-            aria-controls="collapsePages">
-            <i class="fas fa-fw fa-user-shield"></i>
-            <span>Autenticación</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="login.html">Usuarios</a>
-                <a class="collapse-item" href="{{ route('roles.index') }}">Roles</a>
-            </div>
+    @if( Auth::user()->can('view any user') || Auth::user()->can('view any role') )
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Administración
         </div>
-    </li>
-
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false"
+                aria-controls="collapsePages">
+                <i class="fas fa-fw fa-user-shield"></i>
+                <span>Autenticación</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    @can('view any user')
+                        <a class="collapse-item" href="{{ route('users.index') }}">Usuarios</a>
+                    @endcan
+                    @can('view any role')
+                        <a class="collapse-item" href="{{ route('roles.index') }}">Roles</a>
+                    @endcan
+                </div>
+            </div>
+        </li>
+    @endif
     <!-- Nav Item - Charts -->
     <li class="nav-item">
         <a class="nav-link" href="charts.html">

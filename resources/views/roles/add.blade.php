@@ -34,7 +34,8 @@
                                             <td>
                                                 @foreach ($permisos as $key => $permiso)
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="check_{{$title}}_{{$key}}" name="permissions[]" value="{{ $permiso }}">
+                                                        <input class="form-check-input" type="checkbox" id="check_{{$title}}_{{$key}}" 
+                                                            name="permissions[]" value="{{ $permiso }}">
                                                         <label class="form-check-label" for="check_{{$title}}_{{$key}}">{{ $permiso }}</label>
                                                     </div>
                                                 @endforeach

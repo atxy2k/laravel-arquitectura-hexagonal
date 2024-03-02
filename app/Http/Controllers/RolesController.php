@@ -20,7 +20,7 @@ class RolesController extends Controller
     }
 
     public function add(){
-        $titles = ['almacen','departamento','marca','user','role'];
+        $titles = ['almacen','departamento','marca','user','role','product'];
         $permissions = [];
         foreach($titles as $title){
             $list = Permission::where('name','like', "%$title%")->pluck('name')->all();

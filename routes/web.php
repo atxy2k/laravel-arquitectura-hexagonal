@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartamentosController;
 use App\Http\Controllers\MarcasController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,5 +72,15 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
         Route::post('store-change/{id}', [RolesController::class,'store_change'])->name('roles.store-change');
         Route::get('delete/{id}', [RolesController::class, 'delete'])->name('roles.delete');
     });
+
+    Route::prefix('users')->group(function(){
+        Route::get('/', [UsersController::class,'index'])->name('users.index');
+        Route::get('add', [UsersController::class,'add'])->name('users.add');
+        Route::post('store',[UsersController::class,'store'])->name('users.store');
+        Route::get('change/{id}', [UsersController::class, 'change'])->name('users.change');
+        Route::post('store-change/{id}', [UsersController::class,'store_change'])->name('users.store-change');
+        Route::get('delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
+    });
+
 
 });

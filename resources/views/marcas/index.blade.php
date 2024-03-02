@@ -33,8 +33,12 @@
                             <div>{{ $marca->updated_at->fromNow() }}</div>
                         </td>
                         <td>
-                            <a href="{{ route('marcas.change', $marca->id) }}" class="btn btn-primary">Editar</a>
-                            <a href="{{ route('marcas.delete', $marca->id) }}" class="btn btn-danger">Eliminar</a>
+                            @can('change marca')
+                                <a href="{{ route('marcas.change', $marca->id) }}" class="btn btn-primary">Editar</a>
+                            @endcan
+                            @can('delete marca')
+                                <a href="{{ route('marcas.delete', $marca->id) }}" class="btn btn-danger">Eliminar</a>
+                            @endcan
                         </td>
                     </tr>
                 @empty

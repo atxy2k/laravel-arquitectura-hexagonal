@@ -33,8 +33,12 @@
                             <div>{{ $departamento->updated_at->fromNow() }}</div>
                         </td>
                         <td>
-                            <a href="{{ route('departamentos.change', $departamento->id) }}" class="btn btn-primary">Editar</a>
-                            <a href="{{ route('departamentos.delete', $departamento->id) }}" class="btn btn-danger">Eliminar</a>
+                            @can('change departamento')
+                                <a href="{{ route('departamentos.change', $departamento->id) }}" class="btn btn-primary">Editar</a>
+                            @endcan
+                            @can('delete departamento')
+                                <a href="{{ route('departamentos.delete', $departamento->id) }}" class="btn btn-danger">Eliminar</a>
+                            @endcan
                         </td>
                     </tr>
                 @empty

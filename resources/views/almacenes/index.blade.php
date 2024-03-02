@@ -1,9 +1,11 @@
 @extends('templates.layout')
 @section('content')
 
-<div class="text-right">
-    <a href="{{ route('almacenes.add') }}" class="btn btn-primary">Agregar almacen</a>
-</div>
+@can('add almacen')
+    <div class="text-right">
+        <a href="{{ route('almacenes.add') }}" class="btn btn-primary">Agregar almacen</a>
+    </div>
+@endcan
 
 <div class="card mt-3">
     <div class="card-header">Almacenes</div>
@@ -33,8 +35,12 @@
                             <div>{{ $almacen->updated_at->fromNow() }}</div>
                         </td>
                         <td>
-                            <a href="{{ route('almacenes.change', $almacen->id) }}" class="btn btn-primary">Editar</a>
-                            <a href="{{ route('almacenes.delete', $almacen->id) }}" class="btn btn-danger">Eliminar</a>
+                            @can('change almacen')
+                                <a href="{{ route('almacenes.change', $almacen->id) }}" class="btn btn-primary">Editar</a>
+                            @endcan
+                            @can('delete almacen')
+                                <a href="{{ route('almacenes.delete', $almacen->id) }}" class="btn btn-danger">Eliminar</a>
+                            @endcan
                         </td>
                     </tr>
                 @empty
