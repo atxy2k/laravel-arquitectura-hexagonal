@@ -27,6 +27,7 @@
                             {{ implode(', ', $role->permissions()->pluck('name')->all()) }}
                         </td>
                         <td>
+                            <a href="{{ route('roles.show', $role->id)}}" class="btn btn-secondary">Ver</a>
                             <a href="{{ route('roles.change', $role->id) }}" class="btn btn-primary">Editar</a>
                             <a href="{{ route('roles.delete', $role->id) }}" class="btn btn-danger">Eliminar</a>
                         </td>

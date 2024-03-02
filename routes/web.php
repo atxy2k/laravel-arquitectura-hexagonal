@@ -67,6 +67,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
         Route::get('add', [RolesController::class,'add'])->name('roles.add');
         Route::post('store',[RolesController::class,'store'])->name('roles.store');
         Route::get('change/{id}', [RolesController::class, 'change'])->name('roles.change');
+        Route::get('show/{id}', [RolesController::class, 'show'])->name('roles.show');
         Route::post('store-change/{id}', [RolesController::class,'store_change'])->name('roles.store-change');
         Route::get('delete/{id}', [RolesController::class, 'delete'])->name('roles.delete');
     });

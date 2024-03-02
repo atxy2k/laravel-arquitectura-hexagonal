@@ -2,15 +2,15 @@
 @section('content')
 
     <div class="card mt-3">
-        <div class="card-header">Agregar rol</div>
+        <div class="card-header">Editar rol</div>
         <div class="card-body">
-            <form action="{{ route('roles.store') }}" method="post">
+            <form action="{{ route('roles.store-change', $role->id) }}" method="post">
                 @csrf
                 <div class="row">
                     <label for="name" class="col-3 text-right mt-2">Nombre</label>
                     <div class="col-9">
                         <input type="text" required name="name" class="form-control" 
-                            value="{{ old('name') }}"
+                            value="{{ old('name', $role->name) }}"
                             autofocus="true" placeholder="Nombre del rol">
                     </div>
                 </div>
@@ -34,7 +34,9 @@
                                             <td>
                                                 @foreach ($permisos as $key => $permiso)
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="check_{{$title}}_{{$key}}" name="permissions[]" value="{{ $permiso }}">
+                                                        <input class="form-check-input" type="checkbox" 
+                                                            {{ $role->hasPermissionTo($permiso) ? 'checked' : '' }}
+                                                            id="check_{{$title}}_{{$key}}" name="permissions[]" value="{{ $permiso }}">
                                                         <label class="form-check-label" for="check_{{$title}}_{{$key}}">{{ $permiso }}</label>
                                                     </div>
                                                 @endforeach
