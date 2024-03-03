@@ -20,7 +20,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('existencias.index') }}">
             <i class="fas fa-fw fa-box"></i>
             <span>Existencias</span></a>
     </li>

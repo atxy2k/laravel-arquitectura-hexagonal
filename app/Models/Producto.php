@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Producto extends Model
 {
@@ -30,6 +32,14 @@ class Producto extends Model
 
     public function updated_by(): BelongsTo{
         return $this->belongsTo(User::class, 'updated_by_id');
+    }
+
+    public function existencias() : HasOne{
+        return $this->hasOne(Existencias::class,'producto_id','id');
+    }
+
+    public function existencias_por_almacen() : HasMany{
+        return $this->hasMany(ExistenciasPorAlmacenModel::class, 'producto_id','id');
     }
 
 }
