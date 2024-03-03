@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartamentosController;
 use App\Http\Controllers\ExistenciasController;
+use App\Http\Controllers\KardexController;
 use App\Http\Controllers\MarcasController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\RolesController;
@@ -96,6 +97,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::prefix('existencias')->group(function(){
         Route::get('/', [ExistenciasController::class,'index'])->name('existencias.index');
         Route::match(['get','post'],'add', [ExistenciasController::class,'add'])->name('existencias.add');
+    });
+
+    Route::prefix('kardex')->group(function(){
+        Route::get('/', [KardexController::class, 'index'])->name('kardex.index');
     });
 
 });

@@ -7,12 +7,12 @@
     </button>
 
     <!-- Topbar Search -->
-    <form
+    <!--form
         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <select name="almacen_id" id="almacen_id" class="form-control">
             <option value="">Seleccione un almacen</option>
         </select>
-    </form>
+    </form-->
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
