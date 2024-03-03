@@ -52,7 +52,18 @@ class ProductosController extends Controller
     }
 
     public function change(int $id){
-
+        try
+        {
+            $producto = Producto::findOrFail($id);
+            $marcas = Marca::all();
+            $departamentos = Departamento::all();
+            return view('productos.change', compact('producto','marcas','departamentos'));
+        }
+        catch(Throwable $e)
+        {
+            Alert::error($e->getMessage())->flash();
+            return redirect()->route('productos.index');
+        }
     }
 
     public function store_change(int $id){
