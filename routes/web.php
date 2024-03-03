@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartamentosController;
 use App\Http\Controllers\MarcasController;
+use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UsersController;
 
@@ -82,5 +83,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
         Route::get('delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
     });
 
+    Route::prefix('productos')->group(function(){
+        Route::get('/', [ProductosController::class,'index'])->name('productos.index');
+        Route::get('add', [ProductosController::class,'add'])->name('productos.add');
+        Route::post('store',[ProductosController::class,'store'])->name('productos.store');
+        Route::get('change/{id}', [ProductosController::class, 'change'])->name('productos.change');
+        Route::post('store-change/{id}', [ProductosController::class,'store_change'])->name('productos.store-change');
+        Route::get('delete/{id}', [ProductosController::class, 'delete'])->name('productos.delete');
+    });
 
 });

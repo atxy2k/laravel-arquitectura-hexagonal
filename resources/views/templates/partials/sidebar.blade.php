@@ -42,7 +42,7 @@
                 <a class="collapse-item" href="{{ route('almacenes.index') }}">Almacenes</a>
                 <a class="collapse-item" href="{{ route('departamentos.index') }}">Departamentos</a>
                 <a class="collapse-item" href="{{ route('marcas.index') }}">Marcas</a>
-                <a class="collapse-item" href="utilities-animation.html">Productos</a>
+                <a class="collapse-item" href="{{ route('productos.index') }}">Productos</a>
             </div>
         </div>
     </li>
